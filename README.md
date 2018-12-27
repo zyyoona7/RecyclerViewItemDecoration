@@ -1,0 +1,2 @@
+# RecyclerViewItemDecoration
+itemDecoration for LinearLayoutManager,GridLayoutManager,StaggeredGridLayoutManager.
