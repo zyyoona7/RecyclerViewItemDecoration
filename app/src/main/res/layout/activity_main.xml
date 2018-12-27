@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+    <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LinearLayoutManager"
+            android:id="@+id/btn_linear"
+            android:textAllCaps="false"/>
+
+    <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Section LinearLayoutManager"
+            android:id="@+id/btn_linear_section"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"/>
+
+    <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GridLayoutManager"
+            android:id="@+id/btn_grid"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"/>
+    <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="StaggeredGridLayoutManager"
+            android:id="@+id/btn_staggered"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"/>
+</LinearLayout>

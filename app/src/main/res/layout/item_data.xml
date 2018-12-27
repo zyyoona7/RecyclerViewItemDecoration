@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="#9fdbf9">
+
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_item_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="哈哈哈"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"/>
+</FrameLayout>
