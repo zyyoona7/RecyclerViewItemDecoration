@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: "guru.stefma.bintrayrelease"
 
 android {
     compileSdkVersion 28
@@ -29,4 +30,21 @@ dependencies {
 }
 repositories {
     mavenCentral()
+}
+
+//版本号 version code
+version = "1.0.0"
+//JCenter上显示的路径 path
+group = "com.github.zyyoona7"
+//项目名称 project name
+androidArtifact { // 2
+    artifactId = "recyclerviewdivider"
+}
+publish {
+    //bintray.com 用户名/组织名 user/org name
+    userOrg = 'zyyoona7'
+    //项目描述 description
+    desc = 'itemDecoration for LinearLayoutManager,GridLayoutManager,StaggeredGridLayoutManager.'
+    //项目网址链接 link
+    website = 'https://github.com/zyyoona7/RecyclerViewItemDecoration'
 }
