@@ -14,7 +14,7 @@ import com.zyyoona7.itemdecoration.RecyclerViewDivider
 class VerticalGridActivity : BaseActivity() {
 
     override fun createLayoutManager(): RecyclerView.LayoutManager {
-        return GridLayoutManager(this, 2)
+        return GridLayoutManager(this, 4)
     }
 
     override fun createAdapter(): RecyclerView.Adapter<BaseViewHolder> {
@@ -24,13 +24,14 @@ class VerticalGridActivity : BaseActivity() {
     override fun addHeaderFooter(adapter: RecyclerView.Adapter<BaseViewHolder>) {
         val quickAdapter = adapter as DataAdapter
         quickAdapter.addHeaderView(getView(R.layout.item_ver_header))
-        quickAdapter.addFooterView(getView(R.layout.item_ver_footer))
+//        quickAdapter.addFooterView(getView(R.layout.item_ver_footer))
     }
 
     override fun initItemDecoration(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<BaseViewHolder>) {
         RecyclerViewDivider.grid()
             .color(Color.BLUE)
             .dividerSize(dpToPx(10f))
+            .hideLastDivider()
             .hideDividerForItemType(BaseQuickAdapter.HEADER_VIEW, BaseQuickAdapter.FOOTER_VIEW)
             .build()
             .addTo(recyclerView)
@@ -38,7 +39,9 @@ class VerticalGridActivity : BaseActivity() {
 
     override fun initData(adapter: RecyclerView.Adapter<BaseViewHolder>) {
         val quickAdapter = adapter as DataAdapter
-        quickAdapter.setNewData(DataServer.createGridData(20))
+        quickAdapter.setSpanSizeLookup { gridLayoutManager, position ->
+            2 }
+        quickAdapter.setNewData(DataServer.createGridData(21))
     }
 
 }

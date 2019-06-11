@@ -24,13 +24,14 @@ class HorizontalGridActivity : BaseActivity() {
     override fun addHeaderFooter(adapter: RecyclerView.Adapter<BaseViewHolder>) {
         val quickAdapter = adapter as HorizontalDataAdapter
         quickAdapter.addHeaderView(getView(R.layout.item_hor_header))
-        quickAdapter.addFooterView(getView(R.layout.item_hor_footer))
+//        quickAdapter.addFooterView(getView(R.layout.item_hor_footer))
     }
 
     override fun initItemDecoration(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<BaseViewHolder>) {
         RecyclerViewDivider.grid()
             .color(Color.BLUE)
             .dividerSize(dpToPx(10f))
+            .hideLastDivider()
             .hideDividerForItemType(BaseQuickAdapter.HEADER_VIEW, BaseQuickAdapter.FOOTER_VIEW)
             .build()
             .addTo(recyclerView)

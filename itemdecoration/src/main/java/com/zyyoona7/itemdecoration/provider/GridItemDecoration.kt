@@ -10,6 +10,7 @@ import android.support.annotation.Px
 import android.support.v4.util.ArraySet
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import com.zyyoona7.itemdecoration.ext.itemCount
 import com.zyyoona7.itemdecoration.ext.itemType
@@ -30,6 +31,7 @@ class GridItemDecoration internal constructor(builder: Builder) : RecyclerView.I
     private val isIncludeStartEdge: Boolean = builder.isIncludeStartEdge
     //hide divider only work spanSize==spanCount itemType
     private val hideDividerItemTypeSet = builder.hideDividerItemTypeSet
+    private val isHideLastDivider:Boolean=builder.isHideLastDivider
 
     /**
      * add item decoration to [recyclerView]
@@ -88,7 +90,9 @@ class GridItemDecoration internal constructor(builder: Builder) : RecyclerView.I
 
             if (spanSize == spanCount && isHideItemType(itemPosition, parent)) {
                 outRect.bottom = 0
-            } else {
+            } else if (isHideLastDivider && isInLastRowOrColumn(itemPosition, itemCount, spanCount,layoutManager)){
+                outRect.bottom=0
+            }else{
                 outRect.bottom = verticalSize
             }
         } else {
@@ -111,7 +115,9 @@ class GridItemDecoration internal constructor(builder: Builder) : RecyclerView.I
 
             if (spanSize == spanCount && isHideItemType(itemPosition, parent)) {
                 outRect.right = 0
-            } else {
+            } else if (isHideLastDivider && isInLastRowOrColumn(itemPosition, itemCount, spanCount,layoutManager)){
+                outRect.right=0
+            }else{
                 outRect.right = horizontalSize
             }
         }
@@ -226,6 +232,35 @@ class GridItemDecoration internal constructor(builder: Builder) : RecyclerView.I
         return hideDividerItemTypeSet.contains(itemType)
     }
 
+    /**
+     * [itemPosition] is in last row for Vertical or last column for Horizontal
+     */
+    private fun isInLastRowOrColumn(itemPosition: Int, itemCount: Int,
+                                    spanCount: Int,layoutManager: GridLayoutManager): Boolean {
+        val lastPosition = itemCount - 1
+        if (itemPosition==lastPosition){
+            //最后一个 item 肯定在最后一行（列）
+            return true
+        }
+        if (lastPosition - itemPosition < spanCount) {
+            //有可能是最后一行的下标，候选
+            //上一行（列）的最后一个 position
+            var beforeLastItemPosition: Int = -1
+            for (i in lastPosition - 1 downTo lastPosition - spanCount) {
+                //从倒数第二个开始到候选 item 的最后一个，
+                // 如果这中间有上一行（列）的最后一个，则这个 item 包括它之前的 item 都不在最后一行
+                val spanIndex = layoutManager.spanIndex(i)
+                val spanSize = layoutManager.spanSize(i)
+                if (spanIndex + spanSize == spanCount) {
+                    beforeLastItemPosition = i
+                    break
+                }
+            }
+            return itemPosition > beforeLastItemPosition
+        }
+        return false
+    }
+
     class Builder {
 
         internal var isSpace: Boolean = false
@@ -234,6 +269,7 @@ class GridItemDecoration internal constructor(builder: Builder) : RecyclerView.I
         internal var isIncludeEdge: Boolean = false
         internal var isIncludeStartEdge: Boolean = false
         internal val hideDividerItemTypeSet: ArraySet<Int> = ArraySet(1)
+        internal var isHideLastDivider:Boolean=false
 
         fun asSpace() = apply { isSpace = true }
 
@@ -255,6 +291,8 @@ class GridItemDecoration internal constructor(builder: Builder) : RecyclerView.I
                 itemTypes.forEach { hideDividerItemTypeSet.add(it) }
             }
         }
+
+        fun hideLastDivider()=apply { isHideLastDivider=true }
 
         fun build() = GridItemDecoration(this)
     }
