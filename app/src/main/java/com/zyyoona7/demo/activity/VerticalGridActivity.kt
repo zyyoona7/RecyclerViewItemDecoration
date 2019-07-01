@@ -31,7 +31,8 @@ class VerticalGridActivity : BaseActivity() {
         RecyclerViewDivider.grid()
             .color(Color.BLUE)
             .dividerSize(dpToPx(10f))
-            .hideLastDivider()
+//            .includeEdge()
+//            .hideLastDivider()
             .hideDividerForItemType(BaseQuickAdapter.HEADER_VIEW, BaseQuickAdapter.FOOTER_VIEW)
             .build()
             .addTo(recyclerView)
@@ -39,8 +40,8 @@ class VerticalGridActivity : BaseActivity() {
 
     override fun initData(adapter: RecyclerView.Adapter<BaseViewHolder>) {
         val quickAdapter = adapter as DataAdapter
-        quickAdapter.setSpanSizeLookup { gridLayoutManager, position ->
-            2 }
+//        quickAdapter.setSpanSizeLookup { gridLayoutManager, position ->
+//            2 }
         quickAdapter.setNewData(DataServer.createGridData(21))
     }
 

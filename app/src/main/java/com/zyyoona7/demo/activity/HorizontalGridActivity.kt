@@ -3,6 +3,7 @@ package com.zyyoona7.demo.activity
 import android.graphics.Color
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.widget.LinearLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.zyyoona7.demo.DataServer
@@ -14,7 +15,7 @@ import com.zyyoona7.itemdecoration.RecyclerViewDivider
 class HorizontalGridActivity : BaseActivity() {
 
     override fun createLayoutManager(): RecyclerView.LayoutManager {
-        return GridLayoutManager(this, 2,GridLayoutManager.HORIZONTAL,false)
+        return GridLayoutManager(this, 3,GridLayoutManager.HORIZONTAL,false)
     }
 
     override fun createAdapter(): RecyclerView.Adapter<BaseViewHolder> {
@@ -23,15 +24,16 @@ class HorizontalGridActivity : BaseActivity() {
 
     override fun addHeaderFooter(adapter: RecyclerView.Adapter<BaseViewHolder>) {
         val quickAdapter = adapter as HorizontalDataAdapter
-        quickAdapter.addHeaderView(getView(R.layout.item_hor_header))
+        quickAdapter.addHeaderView(getView(R.layout.item_hor_header),-1,LinearLayout.HORIZONTAL)
 //        quickAdapter.addFooterView(getView(R.layout.item_hor_footer))
     }
 
     override fun initItemDecoration(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<BaseViewHolder>) {
         RecyclerViewDivider.grid()
             .color(Color.BLUE)
+//            .includeEdge()
             .dividerSize(dpToPx(10f))
-            .hideLastDivider()
+//            .hideLastDivider()
             .hideDividerForItemType(BaseQuickAdapter.HEADER_VIEW, BaseQuickAdapter.FOOTER_VIEW)
             .build()
             .addTo(recyclerView)
