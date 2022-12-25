@@ -10,5 +10,5 @@ itemDecoration for LinearLayoutManager,GridLayoutManager,StaggeredGridLayoutMana
 ### 依赖（dependencies）
 
 ```groovy
-implementation 'com.github.zyyoona7:recyclerviewdivider:1.0.2'
+implementation 'com.github.zyyoona7:RecyclerViewItemDecoration:1.0.3'
 ```
