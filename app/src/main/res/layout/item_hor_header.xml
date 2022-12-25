@@ -4,7 +4,7 @@
              android:layout_height="match_parent"
              android:background="#6fa1f2">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="150dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"

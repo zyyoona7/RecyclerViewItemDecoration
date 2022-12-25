@@ -1,6 +1,6 @@
 package com.zyyoona7.itemdecoration
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.zyyoona7.itemdecoration.provider.GridItemDecoration
 import com.zyyoona7.itemdecoration.provider.LinearItemDecoration
 import com.zyyoona7.itemdecoration.provider.StaggeredGridItemDecoration

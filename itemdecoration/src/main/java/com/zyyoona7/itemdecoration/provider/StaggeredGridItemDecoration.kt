@@ -1,9 +1,9 @@
 package com.zyyoona7.itemdecoration.provider
 
 import android.graphics.Rect
-import android.support.annotation.Px
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
+import androidx.annotation.Px
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import android.view.View
 import com.zyyoona7.itemdecoration.ext.itemCount
 
@@ -48,7 +48,8 @@ class StaggeredGridItemDecoration(builder: Builder) : RecyclerView.ItemDecoratio
             return
         }
 
-        val layoutManager = parent.layoutManager as? StaggeredGridLayoutManager ?: return
+        val layoutManager = parent.layoutManager as? StaggeredGridLayoutManager
+            ?: return
         val params = view.layoutParams as? StaggeredGridLayoutManager.LayoutParams ?: return
 
 

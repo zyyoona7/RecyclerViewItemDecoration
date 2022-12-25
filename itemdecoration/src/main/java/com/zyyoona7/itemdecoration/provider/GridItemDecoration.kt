@@ -5,11 +5,11 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
-import android.support.annotation.Px
-import android.support.v4.util.ArraySet
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.ColorInt
+import androidx.annotation.Px
+import androidx.collection.ArraySet
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.zyyoona7.itemdecoration.ext.itemCount
 import com.zyyoona7.itemdecoration.ext.itemType
@@ -64,7 +64,8 @@ class GridItemDecoration internal constructor(builder: Builder) : RecyclerView.I
             return
         }
 
-        val layoutManager = parent.layoutManager as? GridLayoutManager ?: return
+        val layoutManager = parent.layoutManager as? GridLayoutManager
+            ?: return
 
         val spanCount = layoutManager.spanCount
         val spanIndex = layoutManager.spanIndex(itemPosition)
@@ -146,12 +147,13 @@ class GridItemDecoration internal constructor(builder: Builder) : RecyclerView.I
             return
         }
 
-        val layoutManager = parent.layoutManager as? GridLayoutManager ?: return
+        val layoutManager = parent.layoutManager as? GridLayoutManager
+            ?: return
 
         val spanCount = layoutManager.spanCount
         val verticalSize = calculateVerticalDividerSize()
         val horizontalSize = calculateHorizontalDividerSize()
-        val isVertical=layoutManager.orientation==GridLayoutManager.VERTICAL
+        val isVertical=layoutManager.orientation== GridLayoutManager.VERTICAL
 
         val realHorizontalSize = if (isVertical)
             (if (horizontalSize % spanCount == 0) horizontalSize else horizontalSize / spanCount * spanCount)
@@ -278,7 +280,8 @@ class GridItemDecoration internal constructor(builder: Builder) : RecyclerView.I
      * [itemPosition] is in last row for Vertical or last column for Horizontal
      */
     private fun isInLastRowOrColumn(itemPosition: Int, itemCount: Int, spanCount: Int,
-                                    layoutManager: GridLayoutManager): Boolean {
+                                    layoutManager: GridLayoutManager
+    ): Boolean {
         val lastPosition = itemCount - 1
         if (itemPosition == lastPosition) {
             //最后一个 item 肯定在最后一行（列）

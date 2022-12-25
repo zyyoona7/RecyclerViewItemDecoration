@@ -1,7 +1,7 @@
 package com.zyyoona7.demo.activity
 
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.chad.library.adapter.base.BaseViewHolder
 import com.zyyoona7.demo.R
 import com.zyyoona7.demo.adapter.HorizontalDataAdapter
@@ -10,21 +10,24 @@ import com.zyyoona7.itemdecoration.RecyclerViewDivider
 
 class HorizontalStaggeredGridActivity : BaseActivity() {
 
-    override fun createLayoutManager(): RecyclerView.LayoutManager {
-        return StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
+    override fun createLayoutManager(): androidx.recyclerview.widget.RecyclerView.LayoutManager {
+        return androidx.recyclerview.widget.StaggeredGridLayoutManager(
+            2,
+            androidx.recyclerview.widget.StaggeredGridLayoutManager.HORIZONTAL
+        )
     }
 
-    override fun createAdapter(): RecyclerView.Adapter<BaseViewHolder> {
+    override fun createAdapter(): androidx.recyclerview.widget.RecyclerView.Adapter<BaseViewHolder> {
         return HorizontalDataAdapter()
     }
 
-    override fun addHeaderFooter(adapter: RecyclerView.Adapter<BaseViewHolder>) {
+    override fun addHeaderFooter(adapter: androidx.recyclerview.widget.RecyclerView.Adapter<BaseViewHolder>) {
         val quickAdapter = adapter as HorizontalDataAdapter
         quickAdapter.addHeaderView(getView(R.layout.item_ver_header))
         quickAdapter.addFooterView(getView(R.layout.item_ver_footer))
     }
 
-    override fun initItemDecoration(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<BaseViewHolder>) {
+    override fun initItemDecoration(recyclerView: androidx.recyclerview.widget.RecyclerView, adapter: androidx.recyclerview.widget.RecyclerView.Adapter<BaseViewHolder>) {
         RecyclerViewDivider.staggeredGrid()
             .spacingSize(dpToPx(10f))
             .includeEdge()
@@ -32,7 +35,7 @@ class HorizontalStaggeredGridActivity : BaseActivity() {
             .addTo(recyclerView)
     }
 
-    override fun initData(adapter: RecyclerView.Adapter<BaseViewHolder>) {
+    override fun initData(adapter: androidx.recyclerview.widget.RecyclerView.Adapter<BaseViewHolder>) {
         val quickAdapter = adapter as HorizontalDataAdapter
         val list = arrayListOf<String>()
         for (i in 0 until 5) {

@@ -2,9 +2,9 @@ package com.zyyoona7.demo
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.zyyoona7.demo.activity.*
 import com.zyyoona7.demo.adapter.MainAdapter
 import com.zyyoona7.itemdecoration.RecyclerViewDivider
@@ -15,9 +15,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val mainRv = findViewById<RecyclerView>(R.id.rv_main)
+        val mainRv = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rv_main)
 
-        mainRv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        mainRv.layoutManager =
+            androidx.recyclerview.widget.StaggeredGridLayoutManager(
+                2,
+                androidx.recyclerview.widget.StaggeredGridLayoutManager.VERTICAL
+            )
         val adapter = MainAdapter()
         mainRv.adapter = adapter
 

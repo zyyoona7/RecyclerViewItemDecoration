@@ -5,12 +5,12 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
-import android.support.annotation.Px
-import android.support.v4.util.ArraySet
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.annotation.ColorInt
+import androidx.annotation.Px
+import androidx.collection.ArraySet
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.zyyoona7.itemdecoration.ext.itemCount
 import com.zyyoona7.itemdecoration.ext.itemType
 
@@ -19,7 +19,7 @@ import com.zyyoona7.itemdecoration.ext.itemType
  * @version  v1.0
  * @since    2018/12/13.
  */
-class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView.ItemDecoration() {
+class LinearItemDecoration internal constructor(builder: Builder) :RecyclerView.ItemDecoration() {
 
     private val isSpace: Boolean = builder.isSpace
     private val isHideLastDivider: Boolean = builder.isHideLastDivider
@@ -33,7 +33,7 @@ class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView
     /**
      * add item decoration to [recyclerView]
      */
-    fun addTo(recyclerView: RecyclerView) {
+    fun addTo(recyclerView:RecyclerView) {
         removeFrom(recyclerView)
         recyclerView.addItemDecoration(this)
     }
@@ -41,11 +41,11 @@ class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView
     /**
      * remove item decoration from [recyclerView]
      */
-    fun removeFrom(recyclerView: RecyclerView) {
+    fun removeFrom(recyclerView:RecyclerView) {
         recyclerView.removeItemDecoration(this)
     }
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent:RecyclerView, state:RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
         val itemCount = parent.itemCount()
         if (itemCount == 0) {
@@ -57,7 +57,8 @@ class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView
             return
         }
 
-        val layoutManager = parent.layoutManager as? LinearLayoutManager ?: return
+        val layoutManager = parent.layoutManager as? LinearLayoutManager
+            ?: return
 
         val size = calculateDividerSize(layoutManager)
 
@@ -82,7 +83,7 @@ class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView
         }
     }
 
-    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
+    override fun onDraw(c: Canvas, parent:RecyclerView, state:RecyclerView.State) {
         super.onDraw(c, parent, state)
 
         val itemCount = parent.itemCount()
@@ -90,9 +91,10 @@ class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView
             return
         }
 
-        val layoutManager = parent.layoutManager as? LinearLayoutManager ?: return
+        val layoutManager = parent.layoutManager as?LinearLayoutManager
+            ?: return
 
-        if (layoutManager.orientation == RecyclerView.VERTICAL) {
+        if (layoutManager.orientation ==RecyclerView.VERTICAL) {
             //LinearLayoutManager vertical
             drawVertical(c, parent, layoutManager, itemCount)
         } else {
@@ -100,7 +102,7 @@ class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView
         }
     }
 
-    private fun drawVertical(canvas: Canvas, parent: RecyclerView, layoutManager: LinearLayoutManager, itemCount: Int) {
+    private fun drawVertical(canvas: Canvas, parent:RecyclerView, layoutManager:LinearLayoutManager, itemCount: Int) {
 
         val left = parent.paddingLeft + marginStart
         val right = parent.width - parent.paddingRight - marginEnd
@@ -110,7 +112,7 @@ class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView
         for (i in 0 until childCount) {
             val childView = parent.getChildAt(i)
             val itemPosition = parent.getChildAdapterPosition(childView)
-            if (itemPosition == RecyclerView.NO_POSITION) {
+            if (itemPosition ==RecyclerView.NO_POSITION) {
                 return
             }
 
@@ -129,7 +131,7 @@ class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView
         }
     }
 
-    private fun drawHorizontal(canvas: Canvas, parent: RecyclerView, layoutManager: LinearLayoutManager, itemCount: Int) {
+    private fun drawHorizontal(canvas: Canvas, parent:RecyclerView, layoutManager:LinearLayoutManager, itemCount: Int) {
 
         val top = parent.paddingTop + marginStart
         val bottom = parent.height - parent.paddingBottom - marginEnd
@@ -139,7 +141,7 @@ class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView
         for (i in 0 until childCount) {
             val childView = parent.getChildAt(i)
             val itemPosition = parent.getChildAdapterPosition(childView)
-            if (itemPosition == RecyclerView.NO_POSITION) {
+            if (itemPosition ==RecyclerView.NO_POSITION) {
                 return
             }
 
@@ -168,14 +170,14 @@ class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView
     /**
      * [itemPosition]+1 is the hide divider itemType
      */
-    private fun nextIsHideItemType(itemPosition: Int, itemCount: Int, parent: RecyclerView): Boolean {
+    private fun nextIsHideItemType(itemPosition: Int, itemCount: Int, parent:RecyclerView): Boolean {
         return if (itemPosition + 1 < itemCount) hideAroundDividerItemTypeSet.contains(parent.itemType(itemPosition + 1)) else false
     }
 
     /**
      * [itemPosition] is the hide divider itemType
      */
-    private fun isHideItemType(itemPosition: Int, parent: RecyclerView): Boolean {
+    private fun isHideItemType(itemPosition: Int, parent:RecyclerView): Boolean {
         val itemType = parent.itemType(itemPosition)
         return hideAroundDividerItemTypeSet.contains(itemType) || hideDividerItemTypeSet.contains(itemType)
     }
@@ -183,8 +185,8 @@ class LinearItemDecoration internal constructor(builder: Builder) : RecyclerView
     /**
      * [divider] type calculate size
      */
-    private fun calculateDividerSize(layoutManager: LinearLayoutManager): Int {
-        return if (layoutManager.orientation == RecyclerView.VERTICAL) {
+    private fun calculateDividerSize(layoutManager:LinearLayoutManager): Int {
+        return if (layoutManager.orientation ==RecyclerView.VERTICAL) {
             if (divider is ColorDrawable) dividerSize else divider.intrinsicHeight
         } else {
             if (divider is ColorDrawable) dividerSize else divider.intrinsicWidth

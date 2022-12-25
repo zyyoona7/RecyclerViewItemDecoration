@@ -1,8 +1,8 @@
 package com.zyyoona7.demo.activity
 
 import android.graphics.Color
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.widget.LinearLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -14,21 +14,26 @@ import com.zyyoona7.itemdecoration.RecyclerViewDivider
 
 class HorizontalGridActivity : BaseActivity() {
 
-    override fun createLayoutManager(): RecyclerView.LayoutManager {
-        return GridLayoutManager(this, 3,GridLayoutManager.HORIZONTAL,false)
+    override fun createLayoutManager(): androidx.recyclerview.widget.RecyclerView.LayoutManager {
+        return androidx.recyclerview.widget.GridLayoutManager(
+            this,
+            3,
+            androidx.recyclerview.widget.GridLayoutManager.HORIZONTAL,
+            false
+        )
     }
 
-    override fun createAdapter(): RecyclerView.Adapter<BaseViewHolder> {
+    override fun createAdapter(): androidx.recyclerview.widget.RecyclerView.Adapter<BaseViewHolder> {
         return HorizontalDataAdapter()
     }
 
-    override fun addHeaderFooter(adapter: RecyclerView.Adapter<BaseViewHolder>) {
+    override fun addHeaderFooter(adapter: androidx.recyclerview.widget.RecyclerView.Adapter<BaseViewHolder>) {
         val quickAdapter = adapter as HorizontalDataAdapter
         quickAdapter.addHeaderView(getView(R.layout.item_hor_header),-1,LinearLayout.HORIZONTAL)
 //        quickAdapter.addFooterView(getView(R.layout.item_hor_footer))
     }
 
-    override fun initItemDecoration(recyclerView: RecyclerView, adapter: RecyclerView.Adapter<BaseViewHolder>) {
+    override fun initItemDecoration(recyclerView: androidx.recyclerview.widget.RecyclerView, adapter: androidx.recyclerview.widget.RecyclerView.Adapter<BaseViewHolder>) {
         RecyclerViewDivider.grid()
             .color(Color.BLUE)
 //            .includeEdge()
@@ -39,7 +44,7 @@ class HorizontalGridActivity : BaseActivity() {
             .addTo(recyclerView)
     }
 
-    override fun initData(adapter: RecyclerView.Adapter<BaseViewHolder>) {
+    override fun initData(adapter: androidx.recyclerview.widget.RecyclerView.Adapter<BaseViewHolder>) {
         val quickAdapter = adapter as HorizontalDataAdapter
         quickAdapter.setNewData(DataServer.createGridData(20))
     }

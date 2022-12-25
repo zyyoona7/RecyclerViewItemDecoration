@@ -4,7 +4,7 @@
              android:layout_height="150dp"
              android:background="#6fa1f2">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_gravity="center"

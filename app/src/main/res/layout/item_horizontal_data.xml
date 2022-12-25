@@ -7,7 +7,7 @@
         android:padding="15dp"
         android:background="#9fdbf9">
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_item_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
